@@ -18,7 +18,7 @@ fixed-center = false
 background = ${colors.transparent}
 foreground = ${colors.foreground}
 
-;border-size = 5
+border-bottom-size = 5
 border-top-size = 5
 border-left-size = 5
 border-right-size = 5
