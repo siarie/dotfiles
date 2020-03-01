@@ -1,8 +1,7 @@
-<h2 align="center">LATEST SCREENSHOT</h2>
+### Latest Screenshot
 
-# 1. 
 ![1](https://github.com/siarie/dotfiles/blob/master/screenshoot/1.png)
-#### Description:
+**Description**:
 - OS/Distro: Fedora 28
 - WM: Openbox
 - Theme: Arc-Custom [gtk2/3]
