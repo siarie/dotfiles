@@ -1,6 +1,7 @@
 <h2 align="center">LATEST SCREENSHOT</h2>
+
 # 1. 
-![1](https://gitlab.com/aspari/dotfiles/raw/master/screenshot-colletion/1.png)
+![1](https://github.com/siarie/dotfiles/blob/master/screenshoot/1.png)
 #### Description:
 - OS/Distro: Fedora 28
 - WM: Openbox
