@@ -11,7 +11,7 @@ set $up k
 set $right l
 
 # Application
-set $menu wofi --show drun | xargs swaymsg exec --
+set $menu ulauncher-toggle | xargs swaymsg exec --
 set $terminal kitty
 
 # Colors
@@ -29,8 +29,8 @@ set $ws3 "3:term"
 set $ws4 "4:multimedia"
 set $ws5 "5:office"
 set $ws6 "6:chat"
-set $ws7 "7:other"
-set $ws8 "8:eight"
+set $ws7 "7:games"
+set $ws8 "8:other"
 set $ws9 "9:nine"
 set $ws10 "10:ten"
 
@@ -41,8 +41,8 @@ gaps inner      8
 smart_gaps      off
 
 # Border
-default_border pixel 4
-default_floating_border normal 1
+default_border pixel 2
+default_floating_border pixel 1
 
 # Typography
 title_align center
@@ -60,7 +60,7 @@ client.urgent               $urgent-bg-color    $urgent-bg-color    $text-color 
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /home/siarie/home/pictures/wpaper/533042.jpg fill
+output * bg /home/siarie/home/pictures/wpaper/shima_rin_shirooo39.png fill
 
 ### Idle configuration
 #
@@ -234,8 +234,8 @@ bindsym XF86AudioMute exec "amixer -D pulse set Master toggle"
 # bindsym XF86AudioMicMute exec "amixer set Capture toggle"
 
 # Screen Brightness controls
-bindsym XF86MonBrightnessUp     exec light -A 2
-bindsym XF86MonBrightnessDown   exec light -U 2
+bindsym XF86MonBrightnessUp     exec light -A 5
+bindsym XF86MonBrightnessDown   exec light -U 5
 
 # Screenshot
 # set sspath /home/siarie/home/pictures/screenshoots/
@@ -244,11 +244,17 @@ bindsym Shift+Print	exec grim -g "$(slurp)" "/home/siarie/home/pictures/screensh
 
 
 # Custom App Config
-for_window [app_id="pavucontrol"] border normal 2, floating enable, resize set 500 400,move right 0px,move up 0px
+for_window [app_id="pavucontrol"] floating enable, resize set 500 400,move right 0px,move up 0px
 for_window [app_id="org.gnome.Nautilus"] border none, floating enable
 for_window [app_id=kitty] floating enable, resize set 675 360
 for_window [app_id=telegramdesktop] floating enable, resize 455 640,move right 865px,move up 80px
-for_window [app_id=thunar] floating enable, resize 500 300
+for_window [app_id=Thunar app_id=thunar] floating enable, resize 500 300
+for_window [app_id=ulauncher] border none, move up 240px
+for_window [class=feh] floating enable, resize 960 500
+
+# Firefox
+for_window [title="About Firefox Nightly"] floating enable
+
 
 
 #
@@ -261,6 +267,7 @@ bar {
 # application startup
 exec mako
 exec nm-applet --indicator
+exec ulauncher --hide-window
 
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
