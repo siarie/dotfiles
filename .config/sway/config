@@ -1,4 +1,4 @@
-### Variables
+### Variables -*- coding: utf-8 -*-
 #
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
@@ -12,7 +12,8 @@ set $right l
 
 # Application
 set $menu ulauncher-toggle | xargs swaymsg exec --
-set $terminal kitty
+set $terminal footclient
+set $dmenu dmenu_path | dmenu | xargs swaymsg exec --
 
 # Colors
 set $bg-color               #81a1c1
@@ -24,20 +25,20 @@ set $focus-text-color       #FFFFFF
 
 # Workspace name
 set $ws1 "1:www"
-set $ws2 "2:code"
-set $ws3 "3:term"
+set $ws2 "2:emacs"
+set $ws3 "3:code"
 set $ws4 "4:multimedia"
 set $ws5 "5:office"
 set $ws6 "6:chat"
-set $ws7 "7:games"
-set $ws8 "8:other"
+set $ws7 "7:other"
+set $ws8 "8:eight"
 set $ws9 "9:nine"
 set $ws10 "10:ten"
 
 ### Style Configuration
 #
 # Gaps
-gaps inner      8
+gaps inner      0
 smart_gaps      off
 
 # Border
@@ -93,7 +94,8 @@ bindsym $mod+Return exec $terminal
 bindsym $mod+Shift+q kill
 
 # Start your launcher
-bindsym $mod+d exec $menu
+bindsym $mod+x exec $menu
+bindsym $mod+d exec $dmenu
 
 # Drag floating windows by holding down $mod and left mouse button.
 # Resize them with right mouse button + $mod.
@@ -246,28 +248,52 @@ bindsym Shift+Print	exec grim -g "$(slurp)" "/home/siarie/home/pictures/screensh
 # Custom App Config
 for_window [app_id="pavucontrol"] floating enable, resize set 500 400,move right 0px,move up 0px
 for_window [app_id="org.gnome.Nautilus"] border none, floating enable
-for_window [app_id=kitty] floating enable, resize set 675 360
-for_window [app_id=telegramdesktop] floating enable, resize 455 640,move right 865px,move up 80px
-for_window [app_id=Thunar app_id=thunar] floating enable, resize 500 300
-for_window [app_id=ulauncher] border none, move up 240px
-for_window [class=feh] floating enable, resize 960 500
+for_window [app_id="kitty"] floating enable, resize set 675 360
+for_window [class="TelegramDesktop"] floating enable, resize 455 640,move right 865px,move up 80px
+for_window [app_id="Thunar" app_id="thunar"] floating enable, resize 500 300
+for_window [app_id="ulauncher"] border none, move up 240px
+for_window [class="feh"] floating enable, resize 960 500
+for_window [app_id="foot"] floating enable
 
-# Firefox
+
+# Firefox:
 for_window [title="About Firefox Nightly"] floating enable
 
 
+# Assign:
+assign [class="Nightly"] $ws1
+assign [class="Emacs"] $ws2
+assign [app_id="libreoffice-*"] $ws5
+assign [class="discord"] $ws6
 
-#
 # Status Bar:
-#
+
 bar {
-    swaybar_command waybar
+    position bottom
+
+    status_command ~/.config/sway/bar.py
+    # status_command while date +'%d %m %Y %l:%M %p'; do sleep 60; done
+
+    strip_workspace_numbers yes
+
+
+    colors {
+    	   statusline #ffffff
+	   background #323232
+	   inactive_workspace #323232 #323232 #5c5c5c
+    }
+
+    font pango: JetBrainsMono Nerd Font 10
+
+    # swaybar_command waybar
 }
 
 # application startup
 exec mako
-exec nm-applet --indicator
 exec ulauncher --hide-window
+
+# Start foot daemon
+exec foot --server
 
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 

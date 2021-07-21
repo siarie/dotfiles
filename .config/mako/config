@@ -1,0 +1,21 @@
+# Basic configuration
+sort=-time
+layer=overlay
+max-visible=5
+
+format=<b>%s</b>\n%b
+
+# Style
+font=Ubuntu Mono 10
+background-color=#282629
+text-color=#f8f8f2
+border-size=2
+border-color=#00a6fb
+margin=8
+padding=4
+height=130
+
+default-timeout=5000
+
+[urgency=high]
+border-color=#ff5555
