@@ -5,6 +5,13 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
+
+# Bash Alias
+if [ -f ~/.bash_aliases ]; then
+	. ~/.bash_aliases
+fi
+
+
 # User specific environment
 if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
 then
@@ -20,6 +27,3 @@ export PATH="$(yarn global bin):$PATH:$HOME/.config/composer/vendor/bin:$HOME/.l
 
 export PS1="\[\e[1;34m\u\e[m\] at \[\e[1;31m\W\]\n\[\e[1;32m\]» \[\e[0m\]"
 . "$HOME/.cargo/env"
-
-
-export TERM=xterm-256color
