@@ -1,1 +1,0 @@
-alias foot="footclient"
