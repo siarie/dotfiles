@@ -47,7 +47,7 @@ default_floating_border pixel 1
 
 # Typography
 title_align center
-font pango: Fira Sans 10
+font pango: DejaVu Sans 10
 
 # Window Colors
 # Opetion Name              # Border            # Background        # Text                  # Indicator
@@ -59,7 +59,7 @@ client.urgent               $urgent-bg-color    $urgent-bg-color    $text-color 
 
 
 ### Output configuration
-output * bg /home/siarie/multimedia/pictures/wpaper/shima_rin_shirooo39.png fill
+output * bg #d4d4d4 solid_color
 
 ### Idle configuration
 exec swayidle -w \
@@ -266,7 +266,7 @@ assign [class="discord"] $ws6
 # Status Bar:
 
 bar {
-    position bottom
+	position bottom
 
     status_command ~/.config/sway/bar.py
     # status_command while date +'%d %m %Y %l:%M %p'; do sleep 60; done
@@ -275,12 +275,12 @@ bar {
 
 
     colors {
-    	   statusline #ffffff
-	   background #323232
-	   inactive_workspace #323232 #323232 #5c5c5c
+		statusline #ffffff
+		background #323232
+		inactive_workspace #323232 #323232 #5c5c5c
     }
 
-    font pango: JetBrainsMono Nerd Font 10
+    font pango: DejaVu Sans Mono 10
 
     # swaybar_command waybar
 }
