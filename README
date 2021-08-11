@@ -1,7 +1,0 @@
-# my personal .dotfiles
-
-git clone https://git.sr.ht/~siarie/dotfiles ~/.dotfiles
-cd ~/.dotfiles
-
-stow .
-
