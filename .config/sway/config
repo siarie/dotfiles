@@ -1,19 +1,18 @@
 ### Variables -*- coding: utf-8 -*-
 #
 # Logo key. Use Mod1 for Alt.
-set $mod Mod4
-set $mod1 Mod1
+set $mod	Mod4
+set $mod1	Mod1
 
 # Home row direction keys, like vim
-set $left h
-set $down j
-set $up k
-set $right l
+set $left	h
+set $down	j
+set $up		k
+set $right	l
 
 # Application
-set $menu ulauncher-toggle | xargs swaymsg exec --
-set $terminal footclient
-set $dmenu dmenu_path | dmenu | xargs swaymsg exec --
+set $terminal	footclient
+set $dmenu		dmenu_path | dmenu | xargs swaymsg exec --
 
 # Colors
 set $bg-color               #81a1c1
@@ -24,16 +23,16 @@ set $urgent-bg-color        #E53935
 set $focus-text-color       #FFFFFF
 
 # Workspace name
-set $ws1 "1:www"
-set $ws2 "2:emacs"
-set $ws3 "3:code"
-set $ws4 "4:multimedia"
-set $ws5 "5:office"
-set $ws6 "6:chat"
-set $ws7 "7:other"
-set $ws8 "8:eight"
-set $ws9 "9:nine"
-set $ws10 "10:ten"
+set $ws1	"1:www"
+set $ws2	"2:emacs"
+set $ws3	"3:code"
+set $ws4	"4:multimedia"
+set $ws5	"5:office"
+set $ws6	"6:chat"
+set $ws7	"7:other"
+set $ws8	"8:eight"
+set $ws9	"9:nine"
+set $ws10	"10:ten"
 
 ### Style Configuration
 #
@@ -42,12 +41,12 @@ gaps inner      0
 smart_gaps      off
 
 # Border
-default_border pixel 2
-default_floating_border pixel 1
+default_border			pixel	2
+default_floating_border	pixel	1
 
 # Typography
-title_align center
-font pango: DejaVu Sans 10
+title_align	center
+font		pango: DejaVu Sans 10
 
 # Window Colors
 # Opetion Name              # Border            # Background        # Text                  # Indicator
@@ -227,19 +226,19 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Audio Control
-bindsym XF86AudioRaiseVolume exec "amixer -D pulse set Master 2%+"
-bindsym XF86AudioLowerVolume exec "amixer -D pulse set Master 2%-"
-bindsym XF86AudioMute exec "amixer -D pulse set Master toggle"
-# bindsym XF86AudioMicMute exec "amixer set Capture toggle"
+bindsym XF86AudioRaiseVolume	exec "amixer set Master 2%+"
+bindsym XF86AudioLowerVolume	exec "amixer set Master 2%-"
+bindsym XF86AudioMute			exec "amixer set Master toggle"
+bindsym XF86AudioMicMute		exec "amixer set Capture toggle"
 
 # Screen Brightness controls
 bindsym XF86MonBrightnessUp     exec light -A 5
 bindsym XF86MonBrightnessDown   exec light -U 5
 
 # Screenshot
-# set sspath /home/siarie/home/pictures/screenshoots/
-bindsym Print		exec grim "/home/siarie/multimedia/pictures/screenshoot/shot-$(date --rfc-3339=seconds).png" && notify-send "Screenshot Saved"
-bindsym Shift+Print	exec grim -g "$(slurp)" "/home/siarie/multimedia/pictures/screenshoot/shot-$(date --rfc-3339=seconds).png" && notify-send "Screenshot Saved"
+set ss_path $(xdg-user-dir PICTURES)/screenshoot
+bindsym Print		exec grim "$(xdg-user-dir PICTURES/screenshoot/shot-$(date --rfc-3339=seconds).png" && notify-send "Screenshot Saved"
+bindsym Shift+Print	exec grim -g "$(slurp)" "$(xdg-user-dir PICTURES)/screenshoot/shot-$(date --rfc-3339=seconds).png" && notify-send "Screenshot Saved"
 
 
 # Custom App Config
@@ -256,7 +255,6 @@ for_window [app_id="foot"] floating enable
 # Firefox:
 for_window [title="About Firefox Nightly"] floating enable
 
-
 # Assign:
 assign [class="Nightly"] $ws1
 assign [class="Emacs"] $ws2
@@ -264,25 +262,16 @@ assign [app_id="libreoffice-*"] $ws5
 assign [class="discord"] $ws6
 
 # Status Bar:
-
 bar {
 	position bottom
-
     status_command ~/.config/sway/bar.py
-    # status_command while date +'%d %m %Y %l:%M %p'; do sleep 60; done
-
     strip_workspace_numbers yes
-
-
+    font pango: DejaVu Sans Mono 10
     colors {
 		statusline #ffffff
 		background #323232
 		inactive_workspace #323232 #323232 #5c5c5c
     }
-
-    font pango: DejaVu Sans Mono 10
-
-    # swaybar_command waybar
 }
 
 # application startup
