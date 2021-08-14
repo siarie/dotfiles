@@ -30,3 +30,4 @@ fi
 unset rc
 
 export PS1="\[\e[1;34m\u\e[m\] at \[\e[1;31m\W\]\n\[\e[1;32m\]» \[\e[0m\]"
+export GPG_TTY=$(tty)
