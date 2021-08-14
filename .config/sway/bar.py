@@ -14,22 +14,18 @@ def render(data):
 def network():
     try:
         ssid = check_output("iwgetid -r", shell=True).strip().decode("utf-8")
-        icon = "直"
+        return ssid
     except Exception:
-        ssid = "offline"
-        icon = "睊"
-
-    return "{} {}".format(icon, ssid)
+        return "offline"
 
 def battery():
     bat = int(sensors_battery().percent)
-    icon = "" if sensors_battery().power_plugged else ""
     
-    return "{} {}%".format(icon, bat)
+    return "bat: {}%".format(bat)
 
 def date_time():
     format = datetime.now().strftime("%a, %d %b %H:%M")
-    return " {}".format(format)
+    return "{}".format(format)
 
 
 def main():
