@@ -1,7 +1,0 @@
-# alias
-
-alias foot="footclient"
-alias tree="tree --dirsfirst"
-
-# --group-directories-first only work on GNU
-alias ll="ls -Ahlv --group-directories-first"

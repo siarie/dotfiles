@@ -5,29 +5,19 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
-# User specific environment
-if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
-then
-    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
-fi
+# beautify Bash Prompt
+BLUE="\033[1;34m"
+GREEN="\033[1;32m"
+RED="\033[1;31m"
+SC="\033[0m"
+export PS1="\[${BLUE}\u${SC}\] at \[${RED}\W\] \n\[${GREEN}\]» \[${SC}\]"
 
-PATH="$(yarn global bin):$PATH"
-PATH="$HOME/.config/composer/vendor/bin:$PATH"
-export PATH
+unset BLUE
+unset GREEN
+unset RED
+unset SC
 
-# Uncomment the following line if you don't like systemctl's auto-paging feature:
-# export SYSTEMD_PAGER=
-
-# User specific aliases and functions
-if [ -d ~/.bashrc.d ]; then
-	for rc in ~/.bashrc.d/*; do
-		if [ -f "$rc" ]; then
-			. "$rc"
-		fi
-	done
-fi
-
-unset rc
-
-export PS1="\[\e[1;34m\u\e[m\] at \[\e[1;31m\W\]\n\[\e[1;32m\]» \[\e[0m\]"
-export GPG_TTY=$(tty)
+# alias
+alias foot="footclient"
+alias tree="tree --dirsfirst"
+alias ll="ls -hl"
