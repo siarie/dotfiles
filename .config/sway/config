@@ -233,7 +233,6 @@ bindsym XF86MonBrightnessUp     exec light -A 5
 bindsym XF86MonBrightnessDown   exec light -U 5
 
 # Screenshot
-set ss_path $(xdg-user-dir PICTURES)/screenshoot
 bindsym Print		exec grim "$(xdg-user-dir PICTURES/screenshoot/shot-$(date --rfc-3339=seconds).png" && notify-send "Screenshot Saved"
 bindsym Shift+Print	exec grim -g "$(slurp)" "$(xdg-user-dir PICTURES)/screenshoot/shot-$(date --rfc-3339=seconds).png" && notify-send "Screenshot Saved"
 
