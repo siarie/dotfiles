@@ -6,8 +6,8 @@ then
     PATH="$HOME/.local/bin:$HOME/.bin:$PATH"
 fi
 
-# yarn global directory
-PATH="$PATH:$(yarn global bin)"
+# npm and yarn global directory
+PATH="$PATH:$(yarn global bin):$HOME/.npm-global"
 
 # composer gloabal directory
 if [[ -d "$HOME/.config/composer/vendor/bin" ]]
