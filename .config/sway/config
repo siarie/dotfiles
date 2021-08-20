@@ -243,20 +243,27 @@ bindsym Print		exec grim "$(xdg-user-dir PICTURES/screenshoot/shot-$(date --rfc-
 bindsym Shift+Print	exec grim -g "$(slurp)" "$(xdg-user-dir PICTURES)/screenshoot/shot-$(date --rfc-3339=seconds).png" && notify-send "Screenshot Saved"
 
 
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="bubble"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [window_role="Preferences"] floating enable
+for_window [window_type="dialog"] floating enable
+for_window [window_type="menu"] floating enable
+for_window [window_role="About"] floating enable
+
 # Custom App Config
 for_window [app_id="pavucontrol"] floating enable, resize set 500 400,move right 0px,move up 0px
 for_window [app_id="org.gnome.Nautilus"] border none, floating enable
 for_window [app_id="kitty"] floating enable, resize set 675 360
 for_window [class="TelegramDesktop"] floating enable, resize 455 640,move right 865px,move up 80px
 for_window [app_id="Thunar" app_id="thunar"] floating enable, resize 500 300
-for_window [app_id="ulauncher"] border none, move up 240px
 for_window [class="feh"] floating enable, resize 960 500
 for_window [app_id="foot"] floating enable
 
 
 # Firefox:
 for_window [title="About Firefox Nightly"] floating enable
-
+for_window [title="About Mozilla Firefox"] floating enable
 # Assign:
 assign [class="Nightly"] $ws1
 assign [class="Emacs"] $ws2
