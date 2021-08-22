@@ -12,7 +12,7 @@ set $right	l
 
 # Application
 set $terminal	footclient
-set $dmenu		dmenu_path | dmenu | xargs swaymsg exec --
+set $launcher	bemenu-run -l 5 | xargs swaymsg exec --
 
 # Colors
 set $bg-color		    #00a6fb
@@ -93,8 +93,7 @@ bindsym $mod+Return exec $terminal
 bindsym $mod+Shift+q kill
 
 # Start your launcher
-bindsym $mod+x exec $menu
-bindsym $mod+d exec $dmenu
+bindsym $mod+d exec $launcher
 
 # Drag floating windows by holding down $mod and left mouse button.
 # Resize them with right mouse button + $mod.
@@ -258,12 +257,16 @@ for_window [app_id="kitty"] floating enable, resize set 675 360
 for_window [class="TelegramDesktop"] floating enable, resize 455 640,move right 865px,move up 80px
 for_window [app_id="Thunar" app_id="thunar"] floating enable, resize 500 300
 for_window [class="feh"] floating enable, resize 960 500
+
+# foot terminal
 for_window [app_id="foot"] floating enable
+for_window [app_id="foot-dialog"] floating enable, border none
 
-
-# Firefox:
+# Mozilla
 for_window [title="About Firefox Nightly"] floating enable
 for_window [title="About Mozilla Firefox"] floating enable
+for_window [app_id="thunderbird"] floating enable
+
 # Assign:
 assign [class="Nightly"] $ws1
 assign [class="Emacs"] $ws2
