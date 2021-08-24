@@ -41,7 +41,7 @@ gaps inner      0
 smart_gaps      off
 
 # Border
-default_border			pixel	2
+default_border		pixel	2
 default_floating_border	pixel	1
 
 # Typography
@@ -58,7 +58,7 @@ client.urgent               $urgent-bg-color    $urgent-bg-color    $text-color 
 
 
 ### Output configuration
-output * bg #232629 solid_color
+output * bg "$(xdg-user-dir PICTURES)/wpaper/circuit.png" stretch
 
 ### Idle configuration
 exec swayidle -w \
