@@ -6,6 +6,11 @@ from subprocess import  check_output
 from sys import stdout
 from time import sleep
 
+def secs2hours(secs):
+    mm, ss = divmod(secs, 60)
+    hh, mm = divmod(mm, 60)
+
+    return "{}h {}m".format(hh, mm)
 
 def render(data):
     stdout.write("%s\n" % data)
@@ -20,8 +25,10 @@ def network():
 
 def battery():
     bat = int(sensors_battery().percent)
-    
-    return "bat: {}%".format(bat)
+    prefix = "charging" if sensors_battery().power_plugged else "bat"
+    lifetime = sensors_battery().secsleft
+
+    return "{}: {}% {} remaining".format(prefix, bat, secs2hours(lifetime))
 
 def date_time():
     format = datetime.now().strftime("%a, %d %b %H:%M")
