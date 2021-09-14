@@ -15,9 +15,9 @@ set $terminal	footclient
 set $launcher	bemenu-run -l 5 | xargs swaymsg exec --
 
 # Colors
-set $bg-color		    #00a6fb
+set $bg-color               #00a6fb
 set $inactive-bg-color	    #0dd9d6
-set $text-color		    #f8f8f2
+set $text-color		        #f8f8f2
 set $inactive-text-color    #484e54
 set $urgent-bg-color	    #f11235
 set $focus-text-color	    #fcfcfc
@@ -230,6 +230,8 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
+## XF86 keysyms
+#
 # Audio Control
 bindsym XF86AudioRaiseVolume	exec "amixer set Master 2%+"
 bindsym XF86AudioLowerVolume	exec "amixer set Master 2%-"
@@ -239,6 +241,12 @@ bindsym XF86AudioMicMute		exec "amixer set Capture toggle"
 # Screen Brightness controls
 bindsym XF86MonBrightnessUp     exec light -A 5
 bindsym XF86MonBrightnessDown   exec light -U 5
+
+# wlan, battery, etc
+# bindsym XF86WLAN <wlan-toggle>
+# bindsym XF86Battery <command>
+# bindsym XF86Sleep <sleep>
+
 
 # Screenshot
 bindsym Print		exec grim "$(xdg-user-dir PICTURES/screenshoot/shot-$(date --rfc-3339=seconds).png" && notify-send "Screenshot Saved"
