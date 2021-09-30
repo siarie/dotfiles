@@ -1,9 +1,3 @@
 #+title: ~/.dotfiles
 
-
-#+begin_src sh
-$ git clone https://github.com/siarie/dotfiles ~/.dotfiles
-$ cd ~/.dotfiles
-
-$ stow .
-#+end_src
+My configuration files
