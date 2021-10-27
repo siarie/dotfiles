@@ -15,12 +15,12 @@ set $terminal	footclient
 set $launcher	bemenu-run -l 5 | xargs swaymsg exec --
 
 # Colors
-set $bg-color               #00a6fb
-set $inactive-bg-color	    #0dd9d6
-set $text-color		        #f8f8f2
-set $inactive-text-color    #484e54
-set $urgent-bg-color	    #f11235
-set $focus-text-color	    #fcfcfc
+# set $bg-color               #00a6fb
+# set $inactive-bg-color	    #0dd9d6
+# set $text-color		        #f8f8f2
+# set $inactive-text-color    #484e54
+# set $urgent-bg-color	    #f11235
+# set $focus-text-color	    #fcfcfc
 
 # Workspace name
 set $ws1	"1:www"
@@ -50,15 +50,15 @@ font		pango: DejaVu Sans 10
 
 # Window Colors
 # Opetion Name              # Border            # Background        # Text                  # Indicator
-client.background           $bg-color           $bg-color           $text-color             $bg-color
-client.focused              $bg-color           $bg-color           $focus-text-color       $bg-color
-client.focused_inactive     $inactive-bg-color  $inactive-bg-color  $inactive-text-color    $inactive-bg-color
-client.unfocused            $inactive-bg-color  $inactive-bg-color  $inactive-text-color    $inactive-bg-color
-client.urgent               $urgent-bg-color    $urgent-bg-color    $text-color             $urgent-bg-color
+# client.background           $bg-color           $bg-color           $text-color             $bg-color
+# client.focused              $bg-color           $bg-color           $focus-text-color       $bg-color
+# client.focused_inactive     $inactive-bg-color  $inactive-bg-color  $inactive-text-color    $inactive-bg-color
+# client.unfocused            $inactive-bg-color  $inactive-bg-color  $inactive-text-color    $inactive-bg-color
+# client.urgent               $urgent-bg-color    $urgent-bg-color    $text-color             $urgent-bg-color
 
 
 ### Output configuration
-output * bg "$(xdg-user-dir PICTURES)/wpaper/circuit.png" stretch
+# output * bg "$(xdg-user-dir PICTURES)/wpaper/circuit.png" stretch
 
 # setup built-in monitor always on the left
 output LVDS-1 pos 0 0
@@ -265,7 +265,7 @@ for_window [window_role="About"] floating enable
 for_window [app_id="pavucontrol"] floating enable, resize set 500 400,move right 0px,move up 0px
 for_window [app_id="org.gnome.Nautilus"] border none, floating enable
 for_window [app_id="kitty"] floating enable, resize set 675 360
-for_window [class="TelegramDesktop"] floating enable, resize 455 640,move right 865px,move up 80px
+for_window [app_id=".*telegram.*"] floating enable, resize 455 640
 for_window [app_id="Thunar" app_id="thunar"] floating enable, resize 500 300
 for_window [class="feh"] floating enable, resize 960 500
 
@@ -277,6 +277,7 @@ for_window [app_id="foot-dialog"] floating enable, border none
 for_window [title="About Firefox Nightly"] floating enable
 for_window [title="About Mozilla Firefox"] floating enable
 for_window [app_id="thunderbird"] floating enable
+for_window [title="zoom"] floating enable
 
 # Assign:
 assign [class="Nightly"] $ws1
@@ -286,18 +287,9 @@ assign [class="discord"] $ws6
 
 # Status Bar:
 bar {
-    position bottom
-    status_command ~/.config/sway/bar.py
-    strip_workspace_numbers yes
-    font pango: DejaVu Sans Mono 10
-    # output LVDS-1
-    colors {
-	   background 		#484e54
-	   statusline		$text-color
-	   focused_workspace	$bg-color $bg-color $text-color
-	   inactive_workspace 	#484e54 #484e54 $text-color
-	   urgent_workspace	$urgent-bg-color $urgent-bg-color $text-color
-    }
+    status_command ~/.config/sway/statusbar
+    # strip_workspace_numbers yes
+    font pango: Iosevka 9
 }
 
 # application startup

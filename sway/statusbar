@@ -1,0 +1,12 @@
+#!/bin/env sh
+
+function render() {
+    
+    DATE="$(date +'%b %d %l:%M %p')"
+    echo "$DATE | $USER"
+}
+
+while render
+do
+    sleep 1;
+done
