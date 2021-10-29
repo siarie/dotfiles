@@ -11,16 +11,9 @@ set $up		k
 set $right	l
 
 # Application
-set $terminal	footclient
-set $launcher	bemenu-run -l 5 | xargs swaymsg exec --
-
-# Colors
-# set $bg-color               #00a6fb
-# set $inactive-bg-color	    #0dd9d6
-# set $text-color		        #f8f8f2
-# set $inactive-text-color    #484e54
-# set $urgent-bg-color	    #f11235
-# set $focus-text-color	    #fcfcfc
+set $terminal	foot
+set $floatterminal "foot -a floot"
+set $launcher	bemenu-run | xargs swaymsg exec --
 
 # Workspace name
 set $ws1	"1:www"
@@ -46,16 +39,7 @@ default_floating_border	pixel	1
 
 # Typography
 title_align	center
-font		pango: DejaVu Sans 10
-
-# Window Colors
-# Opetion Name              # Border            # Background        # Text                  # Indicator
-# client.background           $bg-color           $bg-color           $text-color             $bg-color
-# client.focused              $bg-color           $bg-color           $focus-text-color       $bg-color
-# client.focused_inactive     $inactive-bg-color  $inactive-bg-color  $inactive-text-color    $inactive-bg-color
-# client.unfocused            $inactive-bg-color  $inactive-bg-color  $inactive-text-color    $inactive-bg-color
-# client.urgent               $urgent-bg-color    $urgent-bg-color    $text-color             $urgent-bg-color
-
+font		pango: Iosevka 9
 
 ### Output configuration
 # output * bg "$(xdg-user-dir PICTURES)/wpaper/circuit.png" stretch
@@ -91,6 +75,9 @@ input "1452:591:Custom_Keyboard" {
 #
 # Start a terminal
 bindsym $mod+Return exec $terminal
+
+# Start floating terminal
+bindsym $mod+Shift+Return exec $floatterminal
 
 # Kill focused window
 bindsym $mod+Shift+q kill
@@ -249,8 +236,8 @@ bindsym XF86MonBrightnessDown   exec light -U 5
 
 
 # Screenshot
-bindsym Print		exec grim "$(xdg-user-dir PICTURES/screenshoot/shot-$(date --rfc-3339=seconds).png" && notify-send "Screenshot Saved"
-bindsym Shift+Print	exec grim -g "$(slurp)" "$(xdg-user-dir PICTURES)/screenshoot/shot-$(date --rfc-3339=seconds).png" && notify-send "Screenshot Saved"
+bindsym Print		exec grim "$(xdg-user-dir PICTURES/screenshot/shot-$(date --rfc-3339=seconds).png" && notify-send "Screenshot Saved"
+bindsym Shift+Print	exec grim -g "$(slurp)" "$(xdg-user-dir PICTURES)/screenshot/shot-$(date --rfc-3339=seconds).png" && notify-send "Screenshot Saved"
 
 
 for_window [window_role="pop-up"] floating enable
@@ -265,13 +252,12 @@ for_window [window_role="About"] floating enable
 for_window [app_id="pavucontrol"] floating enable, resize set 500 400,move right 0px,move up 0px
 for_window [app_id="org.gnome.Nautilus"] border none, floating enable
 for_window [app_id="kitty"] floating enable, resize set 675 360
-for_window [app_id=".*telegram.*"] floating enable, resize 455 640
-for_window [app_id="Thunar" app_id="thunar"] floating enable, resize 500 300
+for_window [app_id="(?i).*telegram.*"] floating enable, resize set 455 720
+for_window [app_id="(?i)thunar"] floating enable, resize 500 300
 for_window [class="feh"] floating enable, resize 960 500
 
 # foot terminal
-for_window [app_id="foot"] floating enable
-for_window [app_id="foot-dialog"] floating enable, border none
+for_window [app_id="floot"] floating enable, border none
 
 # Mozilla
 for_window [title="About Firefox Nightly"] floating enable
@@ -280,7 +266,6 @@ for_window [app_id="thunderbird"] floating enable
 for_window [title="zoom"] floating enable
 
 # Assign:
-assign [class="Nightly"] $ws1
 assign [class="Emacs"] $ws2
 assign [app_id="libreoffice-*"] $ws5
 assign [class="discord"] $ws6
@@ -288,14 +273,11 @@ assign [class="discord"] $ws6
 # Status Bar:
 bar {
     status_command ~/.config/sway/statusbar
-    # strip_workspace_numbers yes
     font pango: Iosevka 9
 }
 
 # application startup
 exec mako
-exec foot --server
-
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
 include /etc/sway/config.d/*
