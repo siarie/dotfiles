@@ -1,12 +1,19 @@
 #!/bin/env sh
 
-function render() {
-    
-    DATE="$(date +'%b %d %l:%M %p')"
-    echo "$DATE | $USER"
-}
 
-while render
+# Ansi color code variables
+# RED="\e[0;91m"
+# BLUE="\e[0;94m"
+# GREEN="\e[0;92m"
+# WHITE="\e[0;97m"
+# RESET="\e[0m"
+
+while
+    WIFI="\uf2ef $(iw wlo1 info | sed -n 's/^.*ssid //p')"
+    BATT="\uf129 $(cat /sys/class/power_supply/BAT0/capacity)%"
+    DATE="\uf14a $(date +'%b %d %l:%M %p')"
+
+    echo -e "$WIFI | $BATT | $DATE | \uf2dc $USER |"
 do
     sleep 1;
 done

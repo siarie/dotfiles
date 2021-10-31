@@ -257,7 +257,7 @@ for_window [app_id="(?i)thunar"] floating enable, resize 500 300
 for_window [class="feh"] floating enable, resize 960 500
 
 # foot terminal
-for_window [app_id="floot"] floating enable, border none
+for_window [app_id="floot"] floating enable
 
 # Mozilla
 for_window [title="About Firefox Nightly"] floating enable
@@ -273,7 +273,7 @@ assign [class="discord"] $ws6
 # Status Bar:
 bar {
     status_command ~/.config/sway/statusbar
-    font pango: Iosevka 9
+    font pango:Iosevka, lucide 9
 }
 
 # application startup
