@@ -48,6 +48,7 @@ font		pango: Iosevka 9
 output LVDS-1 pos 0 0
 
 ### Idle configuration
+bindsym $mod+c exec swaylock -f -c 000000
 exec swayidle -w \
          timeout 300 'swaylock -f -c 000000' \
          timeout 600 'swaymsg "output * dpms off"' \
@@ -62,7 +63,7 @@ input "type:touchpad" {
 
 # default keyboard
 input "1:1:AT_Translated_Set_2_keyboard" {
-    xkb_layout jp
+    xkb_layout gb
     xkb_options caps:capslock
 }
 
@@ -256,6 +257,8 @@ for_window [app_id="(?i).*telegram.*"] floating enable, resize set 455 720
 for_window [app_id="(?i)thunar"] floating enable, resize 500 300
 for_window [class="feh"] floating enable, resize 960 500
 
+for_window [app_id="nm-connection-editor"] floating  enable
+
 # foot terminal
 for_window [app_id="floot"] floating enable
 
@@ -264,20 +267,23 @@ for_window [title="About Firefox Nightly"] floating enable
 for_window [title="About Mozilla Firefox"] floating enable
 for_window [app_id="thunderbird"] floating enable
 for_window [title="zoom"] floating enable
+for_window [title="Picture-in-Picture"] floating enable
 
 # Assign:
-assign [class="Emacs"] $ws2
 assign [app_id="libreoffice-*"] $ws5
-assign [class="discord"] $ws6
 
 # Status Bar:
 bar {
-    status_command ~/.config/sway/statusbar
+    status_command while ~/.config/sway/statusbar; do sleep 1; done
     font pango:Iosevka, lucide 9
 }
 
 # application startup
-exec mako
+exec dunst
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+
+# gtk
+set $gnome-scheme org.gnome.desktop.interface
+exec_always ~/dotfiles/scripts/gtksettings
 
 include /etc/sway/config.d/*

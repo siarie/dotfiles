@@ -1,3 +1,3 @@
-#+title: ~/.dotfiles
+# ~/.dotfiles
 
 My configuration files

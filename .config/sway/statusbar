@@ -8,12 +8,9 @@
 # WHITE="\e[0;97m"
 # RESET="\e[0m"
 
-while
-    WIFI="\uf2ef $(iw wlo1 info | sed -n 's/^.*ssid //p')"
-    BATT="\uf129 $(cat /sys/class/power_supply/BAT0/capacity)%"
-    DATE="\uf14a $(date +'%b %d %l:%M %p')"
+WIFI="\uf2ef $(iw wlo1 info | sed -n 's/^.*ssid //p')"
+VOL="\uf2ea $(awk -F"[][]" '/Left:/ { print $2 }' <(amixer sget Master))"
+BATT="\uf129 $(cat /sys/class/power_supply/BAT0/capacity)%"
+DATE="\uf14a $(date +'%b %d %l:%M %p')"
 
-    echo -e "$WIFI | $BATT | $DATE | \uf2dc $USER |"
-do
-    sleep 1;
-done
+echo -e "$WIFI | $VOL | $BATT | $DATE | \uf2dc $USER |"

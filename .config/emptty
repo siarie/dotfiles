@@ -1,0 +1,7 @@
+#!/bin/sh
+Selection=True
+
+# source /etc/profile
+source ~/.profile
+
+exec dbus-launch $@

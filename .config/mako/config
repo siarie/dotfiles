@@ -6,7 +6,7 @@ max-visible=5
 format=<b>%s</b>\n%b
 
 # Style
-font=Ubuntu Mono 10
+font=Iosevka 10
 background-color=#282629
 text-color=#f8f8f2
 border-size=2
