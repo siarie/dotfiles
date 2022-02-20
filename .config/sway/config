@@ -16,16 +16,16 @@ set $floatterminal "foot -a floot"
 set $launcher	bemenu-run | xargs swaymsg exec --
 
 # Workspace name
-set $ws1	"1:www"
-set $ws2	"2:emacs"
-set $ws3	"3:code"
-set $ws4	"4:multimedia"
-set $ws5	"5:office"
-set $ws6	"6:chat"
-set $ws7	"7:other"
-set $ws8	"8:eight"
-set $ws9	"9:nine"
-set $ws10	"10:ten"
+set $ws1	"1"
+set $ws2	"2"
+set $ws3	"3"
+set $ws4	"4"
+set $ws5	"5"
+set $ws6	"6"
+set $ws7	"7"
+set $ws8	"8"
+set $ws9	"9"
+set $ws10	"10"
 
 ### Style Configuration
 #
@@ -39,7 +39,7 @@ default_floating_border	pixel	1
 
 # Typography
 title_align	center
-font		pango: Iosevka 9
+font		pango: Inconsolata 9
 
 ### Output configuration
 # output * bg "$(xdg-user-dir PICTURES)/wpaper/circuit.png" stretch
@@ -63,7 +63,7 @@ input "type:touchpad" {
 
 # default keyboard
 input "1:1:AT_Translated_Set_2_keyboard" {
-    xkb_layout gb
+    xkb_layout us
     xkb_options caps:capslock
 }
 
@@ -275,12 +275,13 @@ assign [app_id="libreoffice-*"] $ws5
 # Status Bar:
 bar {
     status_command while ~/.config/sway/statusbar; do sleep 1; done
-    font pango:Iosevka, lucide 9
+    font pango: Inconsolata, lucide 10
 }
 
 # application startup
 exec dunst
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+exec lxpolkit
 
 # gtk
 set $gnome-scheme org.gnome.desktop.interface
