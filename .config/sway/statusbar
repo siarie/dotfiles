@@ -13,4 +13,4 @@ VOL="\uf309 $(awk -F"[][]" '/Left:/ { print $2 }' <(amixer sget Master))"
 BATT="\uf12a $(cat /sys/class/power_supply/BAT1/capacity)%"
 DATE="\uf14b $(date +'%b %d %l:%M %p')"
 
-echo -e "$WIFI | $VOL | $BATT | $DATE | \uf2fb $USER |"
+echo -e "$WIFI | $VOL | $BATT | $DATE |"

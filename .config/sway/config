@@ -30,8 +30,12 @@ set $ws10	"10"
 ### Style Configuration
 #
 # Gaps
-gaps inner      0
-smart_gaps      off
+#gaps inner      0
+#smart_gaps      off
+client.focused		#8aadf4	#8aadf4 #181926	#7dc4e4
+client.focused_inactive	#7dc4e4 #7dc4e4 #181926
+client.unfocused	#494d64	#494d64	#7dc4e4
+client.urgent		#ed8796	#ed8796 #181926
 
 # Border
 default_border		pixel	2
@@ -45,8 +49,8 @@ font		pango: Inconsolata 9
 # output * bg "$(xdg-user-dir PICTURES)/wpaper/circuit.png" stretch
 
 # setup built-in monitor always on the left
-output eDP-1 pos 0 0
-output HDMI-A-1 pos 1366 0
+#output eDP-1 pos 0 0
+#output HDMI-A-1 pos 1366 0
 
 ### Idle configuration
 bindsym $mod+c exec swaylock -f -c 000000
@@ -239,9 +243,9 @@ bindsym XF86MonBrightnessDown   exec light -U 5
 
 
 # Screenshot
-bindsym Print		exec grim "$(xdg-user-dir PICTURES/screenshot/shot-$(date --rfc-3339=seconds).png" && notify-send "Screenshot Saved"
-bindsym Shift+Print	exec grim -g "$(slurp)" "$(xdg-user-dir PICTURES)/screenshot/shot-$(date --rfc-3339=seconds).png" && notify-send "Screenshot Saved"
-bindsym Ctrl+Print	exec grim - | wl-copy && notify-send "Screenshot saved on clipboard"
+bindsym Print				exec grim "$(xdg-user-dir PICTURES)/screenshot/shot-$(date --rfc-3339=seconds).png" && notify-send "Screenshot Saved"
+bindsym Shift+Print			exec grim -g "$(slurp)" "$(xdg-user-dir PICTURES)/screenshot/shot-$(date --rfc-3339=seconds).png" && notify-send "Screenshot Saved"
+bindsym Ctrl+Print			exec grim - | wl-copy && notify-send "Screenshot saved on clipboard"
 bindsym Ctrl+Shift+Print	exec grim -g "$(slurp)" - | wl-copy && notify-send "Screenshot saved on clipboard"
 
 # Floating window
@@ -282,9 +286,15 @@ assign [app_id="libreoffice-*"] $ws5
 bar {
     status_command while ~/.config/sway/statusbar; do sleep 1; done
     font pango: Inconsolata, lucide 10
-    output eDP-1
-}
+    
+    colors {
+    	background	#181926
+	statusline	#cad3f5
 
+	focused_workspace #7dc4e4 #b7bdf8 #181926
+	inactive_workspace #363a4f #181926 #939ab7
+	}
+}
 
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
@@ -295,7 +305,7 @@ exec "/usr/lib/protonmail/bridge/proton-bridge-launcher --no-window"
 exec "tdesktop -startintray"
 
 # gtk
-set $gnome-scheme org.gnome.desktop.interface
+#set $gnome-scheme org.gnome.desktop.interface
 #exec_always ~/dotfiles/scripts/gtksettings
 
 include /etc/sway/config.d/*
