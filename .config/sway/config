@@ -30,23 +30,24 @@ set $ws10	"10"
 ### Style Configuration
 #
 # Gaps
-#gaps inner      0
-#smart_gaps      off
+gaps inner      8
+smart_gaps      off
+
 client.focused		#8aadf4	#8aadf4 #181926	#7dc4e4
 client.focused_inactive	#7dc4e4 #7dc4e4 #181926
 client.unfocused	#494d64	#494d64	#7dc4e4
 client.urgent		#ed8796	#ed8796 #181926
 
 # Border
-default_border		pixel	2
-default_floating_border	pixel	1
+default_border		pixel	3
+default_floating_border	pixel	2
 
 # Typography
-title_align	center
+title_align	left
 font		pango: Inconsolata 9
 
 ### Output configuration
-# output * bg "$(xdg-user-dir PICTURES)/wpaper/circuit.png" stretch
+output * bg "~/.local/share/backgrounds/catpuccin/dark-cat-rosewater.png" stretch
 
 # setup built-in monitor always on the left
 #output eDP-1 pos 0 0
@@ -286,6 +287,10 @@ assign [app_id="libreoffice-*"] $ws5
 bar {
     status_command while ~/.config/sway/statusbar; do sleep 1; done
     font pango: Inconsolata, lucide 10
+
+    hidden_state hide
+    mode hide
+    modifier $mod+alt
     
     colors {
     	background	#181926
