@@ -1,5 +1,4 @@
 #!/bin/sh
 
 alias fuckoff="poweroff"
-alias docker="podman"
 alias kubectl="minikube kubectl --"
