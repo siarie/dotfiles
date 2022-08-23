@@ -7,8 +7,8 @@ mod="Mod4"
 #
 riverctl border-width               2
 riverctl background-color           0x1c3339
-riverctl border-color-focused       0xe3ccc6
-riverctl border-color-unfocused     0x1c3339
+riverctl border-color-focused       0xE8EBEB
+riverctl border-color-unfocused     0x495C61
 riverctl xcursor-theme              Adwaita
 
 gsettings set org.gnome.desktop.wm.preferences button-layout " "
@@ -29,10 +29,11 @@ riverctl map normal     $mod Print  enter-mode screenshot
 riverctl map screenshot $mod Print  enter-mode normal
 riverctl map screenshot $mod Return enter-mode normal
 
-riverctl map screenshot $mod        F spawn 'grim' # fullscreen
-riverctl map screenshot $mod+Shift  F spawn 'grim - | wl-copy' # F copy to clipboard"
-riverctl map screenshot $mod        G spawn 'grim -g "$(slurp)"' # grab screen
-riverctl map screenshot $mod+Shift  G spawn 'grim -g "$(slurp)" - | wl-copy' # G copy to clipboard"
+riverctl map screenshot None    F spawn 'grim' # fullscreen
+riverctl map screenshot Shift   F spawn 'grim - | wl-copy' # F copy to clipboard"
+riverctl map screenshot None    G spawn 'grim -g "$(slurp)"' # grab screen
+riverctl map screenshot Shift   G spawn 'grim -g "$(slurp)" - | wl-copy' # G copy to clipboard"
+
 # Window management
 riverctl map normal $mod+Shift  Q       close
 riverctl map normal $mod        Z       zoom
@@ -62,10 +63,10 @@ riverctl declare-mode resize
 riverctl map normal $mod R enter-mode resize
 riverctl map resize $mod R enter-mode normal
 
-riverctl map resize $mod Left   resize horizontal -100
-riverctl map resize $mod Down   resize vertical 100
-riverctl map resize $mod Up     resize vertical -100
-riverctl map resize $mod Right  resize horizontal 100
+riverctl map resize None Left   resize horizontal -100
+riverctl map resize None Down   resize vertical 100
+riverctl map resize None Up     resize vertical -100
+riverctl map resize None Right  resize horizontal 100
 
 ######
 # Tags
@@ -159,6 +160,7 @@ riverctl map normal $mod+Shift Left     send-layout-cmd rivertile "main-location
 ####################
 # Application Filter
 #
+riverctl float-filter-add app-id Thunar
 riverctl float-filter-add app-id terminal
 riverctl float-filter-add title "Open File"
 riverctl csd-filter-add app-id "gedit"
