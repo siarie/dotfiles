@@ -1,0 +1,49 @@
+#import:
+#  - ~/.config/alacritty/themes/catppuccin.yml
+
+env:
+  TERM: xterm-256color
+
+window:
+  title: terminal
+  dynamic_title: true
+  dimensions:
+    lines: 20
+    columns: 75
+  decorations: full
+
+font:
+  normal:
+    family: Inconsolata
+    style: Reguler
+  bold:
+    family: Inconsolata
+    style: Bold
+  italic:
+    family: Inconsolata
+    style: Italic
+  bold_italic:
+    family: Inconsolata
+    style: Bold Italic
+  size: 12.0
+
+draw_bold_text_with_bright_colors: false
+
+colors:
+  primary:
+    background: '0x1c3339'
+    foreground: '0xcbd1d2'
+
+  cursor:
+    text: '0x1c3339'
+    cursor: '0xcbd1d2'
+
+  normal:
+    black: '0x56686c'
+    red: '0xBE504A'
+    green: '0x65BE4A'
+    yellow: '0xBEB44A'
+    blue: '0x4A86BE'
+    magenta: '0xBE4AA7'
+    cyan: '0x4ABE93'
+    white: '0xcbd1d2'
