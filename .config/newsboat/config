@@ -1,0 +1,23 @@
+# Newsboat config
+
+notify-always yes
+notify-format "%d new articles (%n unread articles, %f unread feeds)"
+notify-program "~/.config/newsboat/notify.sh"
+
+
+# Color scheme
+color background          color7    default
+color listnormal          color7    default
+color listnormal_unread   color4    default bold
+color listfocus           color0    color4
+color listfocus_unread    color0    color4   bold
+color info                color12   color0
+color article             color248  default
+
+# highlights
+highlight article "^(Feed|Link):.*$" color46 default bold
+highlight article "^(Title|Date|Author):.*$" color39 default bold
+highlight article "https?://[^ ]+" color46 default underline
+highlight article "\\[[0-9]+\\]" color63 default bold
+highlight article "\\[image\\ [0-9]+\\]" color63 default bold
+highlight feedlist "^─.*$" color61 color235 bold
