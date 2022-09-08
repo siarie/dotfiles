@@ -7,7 +7,7 @@ mod="Mod4"
 #
 riverctl border-width               2
 riverctl background-color           0x1c3339
-riverctl border-color-focused       0xE8EBEB
+riverctl border-color-focused       0x4A86BE
 riverctl border-color-unfocused     0x495C61
 riverctl xcursor-theme              Adwaita
 
@@ -19,15 +19,15 @@ gsettings set org.gnome.desktop.interface cursor-theme Adwaita
 #
 
 # Application
-riverctl map normal $mod        Return spawn alacritty
-riverctl map normal $mod+Shift  Return spawn "alacritty --class terminal"
-riverctl map normal $mod        D spawn bemenu-run
+riverctl map normal $mod        Return  spawn foot
+riverctl map normal $mod+Shift  Return  spawn 'foot --app-id terminal'
+riverctl map normal $mod        D       spawn bemenu-run
 
 # Screenshot
 riverctl declare-mode screenshot
 riverctl map normal     $mod Print  enter-mode screenshot
 riverctl map screenshot $mod Print  enter-mode normal
-riverctl map screenshot $mod Return enter-mode normal
+riverctl map screenshot None Return enter-mode normal
 
 riverctl map screenshot None    F spawn 'grim' # fullscreen
 riverctl map screenshot Shift   F spawn 'grim - | wl-copy' # F copy to clipboard"
@@ -36,18 +36,18 @@ riverctl map screenshot Shift   G spawn 'grim -g "$(slurp)" - | wl-copy' # G cop
 
 # Window management
 riverctl map normal $mod+Shift  Q       close
-riverctl map normal $mod        Z       zoom
-riverctl map normal $mod+Shift  E       exit
+riverctl map normal $mod+Shift  E       spawn 'wlogout -p layer-shell'
+
 riverctl map normal $mod        F       toggle-fullscreen
-riverctl map normal $mod        Space   toggle-float
+riverctl map normal $mod        S       toggle-float
+riverctl map normal $mod        Space   zoom
+
 riverctl map normal $mod        Right   focus-view next
 riverctl map normal $mod        Left    focus-view previous
 riverctl map normal $mod+Shift  Right   swap next
 riverctl map normal $mod+Shift  Left    swap previous
-riverctl map normal $mod        Period  focus-output next
-riverctl map normal $mod        Comma   focus-output previous
 
-# Move views
+# Move floating views
 riverctl map normal $mod+Alt Left   move left 100
 riverctl map normal $mod+Alt Down   move down 100
 riverctl map normal $mod+Alt Up     move up 100
@@ -60,8 +60,9 @@ riverctl map passthrough    $mod F11 enter-mode normal
 
 # resize mode
 riverctl declare-mode resize
-riverctl map normal $mod R enter-mode resize
-riverctl map resize $mod R enter-mode normal
+riverctl map normal $mod R      enter-mode resize
+riverctl map resize $mod R      enter-mode normal
+riverctl map resize None Return enter-mode normal
 
 riverctl map resize None Left   resize horizontal -100
 riverctl map resize None Down   resize vertical 100
@@ -79,13 +80,6 @@ do
     riverctl map normal $mod+Shift          $i set-view-tags $tags
     riverctl map normal $mod+Control        $i toggle-focused-tags $tags
     riverctl map normal $mod+Shift+Control  $i toggle-view-tags $tags
-
-    if [ "$i" -eq 10 ]; then
-        riverctl map normal $mod                0 set-focused-tags $tags
-        riverctl map normal $mod+Shift          0 set-views-tags $tags
-        riverctl map normal $mod+Control        0 toggle-focused-tags $tags
-        riverctl map normal $mod+Shift+Control  0 toggle-view-tags $tags
-    fi
 done
 
 all_tags=$(((1 << 32) - 1))
@@ -134,8 +128,10 @@ riverctl set-repeat 80 300
 ########
 # Output
 #
-riverctl map normal $mod+Shift Period send-to-output next
-riverctl map normal $mod+Shift Comma send-to-output previous
+riverctl map normal $mod        Period  focus-output next
+riverctl map normal $mod        Comma   focus-output previous
+riverctl map normal $mod+Shift  Period  send-to-output next
+riverctl map normal $mod+Shift  Comma   send-to-output previous
 
 ########
 # Layout
@@ -151,10 +147,10 @@ riverctl map normal $mod+Alt+Control J snap down
 riverctl map normal $mod+Alt+Control K snap up
 riverctl map normal $mod+Alt+Control L snap right
 
-riverctl map normal $mod+Shift Up       send-layout-cmd rivertile "main-location top"
-riverctl map normal $mod+Shift Right    send-layout-cmd rivertile "main-location right"
-riverctl map normal $mod+Shift Down     send-layout-cmd rivertile "main-location bottom"
-riverctl map normal $mod+Shift Left     send-layout-cmd rivertile "main-location left"
+#riverctl map normal $mod+Shift Up       send-layout-cmd rivertile "main-location top"
+#riverctl map normal $mod+Shift Right    send-layout-cmd rivertile "main-location right"
+#riverctl map normal $mod+Shift Down     send-layout-cmd rivertile "main-location bottom"
+#riverctl map normal $mod+Shift Left     send-layout-cmd rivertile "main-location left"
 
 
 ####################
@@ -162,22 +158,31 @@ riverctl map normal $mod+Shift Left     send-layout-cmd rivertile "main-location
 #
 riverctl float-filter-add app-id Thunar
 riverctl float-filter-add app-id terminal
+riverctl float-filter-add app-id xdg-desktop-portal-gtk
+riverctl float-filter-add app-id mousepad
 riverctl float-filter-add title "Open File"
+riverctl float-filter-add title "Open Folder"
+
 riverctl csd-filter-add app-id "gedit"
 
-
+###########
+# Autostart
+#
 riverctl spawn "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river"
 riverctl spawn "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
 riverctl spawn "river-tag-overlay \
-    --tag-amount 10 \
+    --timeout 2000 \
+    --tag-amount 9 \
     --anchors 0:1:1:0 \
     --margins 0:10:10:0 \
     --border-colour 0xe3ccc6 \
     --square-size 20 \
     --square-inner-padding 5 \
     --square-padding 5"
+riverctl spawn "lxpolkit"
+riverctl spawn kanshi
 
 # Set and exec into the default layout generator, rivertile.
 # River will send the process group of the init executable SIGTERM on exit.
 riverctl default-layout rivertile
-exec rivertile -view-padding 2 -outer-padding 2
+exec rivertile -view-padding 4 -outer-padding 4
