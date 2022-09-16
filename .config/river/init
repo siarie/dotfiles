@@ -7,8 +7,8 @@ mod="Mod4"
 #
 riverctl border-width               2
 riverctl background-color           0x1c3339
-riverctl border-color-focused       0x4A86BE
-riverctl border-color-unfocused     0x495C61
+riverctl border-color-focused       0x0184bc
+riverctl border-color-unfocused     0x57686c
 riverctl xcursor-theme              Adwaita
 
 gsettings set org.gnome.desktop.wm.preferences button-layout " "
@@ -64,6 +64,7 @@ riverctl map normal $mod R      enter-mode resize
 riverctl map resize $mod R      enter-mode normal
 riverctl map resize None Return enter-mode normal
 
+# resize floating window
 riverctl map resize None Left   resize horizontal -100
 riverctl map resize None Down   resize vertical 100
 riverctl map resize None Up     resize vertical -100
@@ -132,6 +133,9 @@ riverctl map normal $mod        Period  focus-output next
 riverctl map normal $mod        Comma   focus-output previous
 riverctl map normal $mod+Shift  Period  send-to-output next
 riverctl map normal $mod+Shift  Comma   send-to-output previous
+
+#riverctl map-switch normal lid close "edp off"
+#riverctl map-switch normal lid open "edp on"
 
 ########
 # Layout
