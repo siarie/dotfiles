@@ -134,8 +134,8 @@ riverctl map normal $mod        Comma   focus-output previous
 riverctl map normal $mod+Shift  Period  send-to-output next
 riverctl map normal $mod+Shift  Comma   send-to-output previous
 
-#riverctl map-switch normal lid close "edp off"
-#riverctl map-switch normal lid open "edp on"
+riverctl map-switch normal lid close spawn "wlr-randr --output eDP-1 --off"
+riverctl map-switch normal lid open spawn "wlr-randr --output eDP-1 --on"
 
 ########
 # Layout
@@ -161,12 +161,13 @@ riverctl map normal $mod+Alt+Control L snap right
 # Application Filter
 #
 riverctl float-filter-add app-id Thunar
+riverctl float-filter-add app-id thunar
 riverctl float-filter-add app-id terminal
 riverctl float-filter-add app-id xdg-desktop-portal-gtk
 riverctl float-filter-add app-id mousepad
 riverctl float-filter-add title "Open File"
 riverctl float-filter-add title "Open Folder"
-
+riverctl float-filter-add title "Telegram"
 riverctl csd-filter-add app-id "gedit"
 
 ###########
