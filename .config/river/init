@@ -1,14 +1,21 @@
 #!/bin/sh
 
+
+#############
+# Variables
+#
 mod="Mod4"
+background_color=0x2b2e33
+default_focused_border_color=0x65a4cf
+default_unfocused_border_color=0x57686c
 
 ############
 # Appearance
 #
-riverctl border-width               2
-riverctl background-color           0x1c3339
-riverctl border-color-focused       0x0184bc
-riverctl border-color-unfocused     0x57686c
+riverctl border-width               1
+riverctl background-color           $background_color
+riverctl border-color-focused       $default_focused_border_color
+riverctl border-color-unfocused     $default_unfocused_border_color
 riverctl xcursor-theme              Adwaita
 
 gsettings set org.gnome.desktop.wm.preferences button-layout " "
@@ -21,21 +28,21 @@ gsettings set org.gnome.desktop.interface cursor-theme Adwaita
 # Application
 riverctl map normal $mod        Return  spawn foot
 riverctl map normal $mod+Shift  Return  spawn 'foot --app-id terminal'
-riverctl map normal $mod        D       spawn bemenu-run
+riverctl map normal $mod        P       spawn bemenu-run
 
-# Screenshot
+# Screenshot mode
 riverctl declare-mode screenshot
 riverctl map normal     $mod Print  enter-mode screenshot
 riverctl map screenshot $mod Print  enter-mode normal
 riverctl map screenshot None Return enter-mode normal
 
-riverctl map screenshot None    F spawn 'grim' # fullscreen
-riverctl map screenshot Shift   F spawn 'grim - | wl-copy' # F copy to clipboard"
-riverctl map screenshot None    G spawn 'grim -g "$(slurp)"' # grab screen
-riverctl map screenshot Shift   G spawn 'grim -g "$(slurp)" - | wl-copy' # G copy to clipboard"
+riverctl map screenshot None    F spawn 'grim'
+riverctl map screenshot Shift   F spawn 'grim - | wl-copy'
+riverctl map screenshot None    G spawn 'grim -g "$(slurp)"'
+riverctl map screenshot Shift   G spawn 'grim -g "$(slurp)" - | wl-copy'
 
 # Window management
-riverctl map normal $mod+Shift  Q       close
+riverctl map normal $mod		Q       close
 riverctl map normal $mod+Shift  E       spawn 'wlogout -p layer-shell'
 
 riverctl map normal $mod        F       toggle-fullscreen
@@ -48,10 +55,10 @@ riverctl map normal $mod+Shift  Right   swap next
 riverctl map normal $mod+Shift  Left    swap previous
 
 # Move floating views
-riverctl map normal $mod+Alt Left   move left 100
-riverctl map normal $mod+Alt Down   move down 100
-riverctl map normal $mod+Alt Up     move up 100
-riverctl map normal $mod+Alt Right  move right 100
+riverctl map normal $mod+Alt Left   move left 50
+riverctl map normal $mod+Alt Down   move down 50
+riverctl map normal $mod+Alt Up     move up 50
+riverctl map normal $mod+Alt Right  move right 50
 
 # passthrough mode.
 riverctl declare-mode passthrough
@@ -117,7 +124,7 @@ done
 #
 riverctl map-pointer normal $mod BTN_LEFT move-view
 riverctl map-pointer normal $mod BTN_RIGHT resize-view
-riverctl focus-follows-cursor normal
+riverctl focus-follows-cursor disabled
 riverctl set-cursor-warp on-output-change
 
 #######
@@ -160,15 +167,18 @@ riverctl map normal $mod+Alt+Control L snap right
 ####################
 # Application Filter
 #
-riverctl float-filter-add app-id Thunar
-riverctl float-filter-add app-id thunar
-riverctl float-filter-add app-id terminal
-riverctl float-filter-add app-id xdg-desktop-portal-gtk
-riverctl float-filter-add app-id mousepad
-riverctl float-filter-add title "Open File"
-riverctl float-filter-add title "Open Folder"
-riverctl float-filter-add title "Telegram"
-riverctl csd-filter-add app-id "gedit"
+riverctl rule-add float -app-id Thunar
+riverctl rule-add float -app-id thunar
+riverctl rule-add float -app-id terminal
+riverctl rule-add float -app-id xdg-desktop-portal-gtk
+riverctl rule-add float -app-id mousepad
+riverctl rule-add float -title "Open File"
+riverctl rule-add float -title "Open Folder"
+riverctl rule-add float -title "Telegram"
+riverctl rule-add float -app-id pavucontrol
+riverctl rule-add float -app-id Xfe
+
+riverctl rule-add csd  -app-id "gedit"
 
 ###########
 # Autostart
