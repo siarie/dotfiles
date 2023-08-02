@@ -12,13 +12,11 @@ default_unfocused_border_color=0x57686c
 ############
 # Appearance
 #
-riverctl border-width               1
-riverctl background-color           $background_color
+riverctl border-width               2
 riverctl border-color-focused       $default_focused_border_color
 riverctl border-color-unfocused     $default_unfocused_border_color
 riverctl xcursor-theme              Adwaita
 
-gsettings set org.gnome.desktop.wm.preferences button-layout " "
 gsettings set org.gnome.desktop.interface cursor-theme Adwaita
 
 ##########
@@ -26,9 +24,9 @@ gsettings set org.gnome.desktop.interface cursor-theme Adwaita
 #
 
 # Application
-riverctl map normal $mod        Return  spawn foot
-riverctl map normal $mod+Shift  Return  spawn 'foot --app-id terminal'
-riverctl map normal $mod        P       spawn bemenu-run
+riverctl map normal $mod        Return  spawn "foot --app-id terminal"
+riverctl map normal $mod        P       spawn fuzzel
+riverctl map normal $mod        N       spawn nm_dmenu
 
 # Screenshot mode
 riverctl declare-mode screenshot
@@ -177,23 +175,25 @@ riverctl rule-add float -title "Open Folder"
 riverctl rule-add float -title "Telegram"
 riverctl rule-add float -app-id pavucontrol
 riverctl rule-add float -app-id Xfe
+riverctl rule-add float -app-id "org.gnome.Nautilus"
 
-riverctl rule-add csd  -app-id "gedit"
-
+riverctl rule-add csd -app-id "gedit"
+riverctl rule-add csd -app-id "org.gnome.Nautilus"
 ###########
 # Autostart
 #
+riverctl spawn 'swaybg -i $HOME/pics/wpaper/86910-anime-lighthouse-floating_island.jpg -m fill'
 riverctl spawn "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river"
 riverctl spawn "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
-riverctl spawn "river-tag-overlay \
-    --timeout 2000 \
-    --tag-amount 9 \
-    --anchors 0:1:1:0 \
-    --margins 0:10:10:0 \
-    --border-colour 0xe3ccc6 \
-    --square-size 20 \
-    --square-inner-padding 5 \
-    --square-padding 5"
+#riverctl spawn "river-tag-overlay \
+#    --timeout 2000 \
+#    --tag-amount 9 \
+#    --anchors 0:1:1:0 \
+#    --margins 0:10:10:0 \
+#    --border-colour 0xe3ccc6 \
+#    --square-size 20 \
+#    --square-inner-padding 5 \
+#    --square-padding 5"
 riverctl spawn "lxpolkit"
 riverctl spawn kanshi
 
