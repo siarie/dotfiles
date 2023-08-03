@@ -40,8 +40,8 @@ riverctl map screenshot None    G spawn 'grim -g "$(slurp)"'
 riverctl map screenshot Shift   G spawn 'grim -g "$(slurp)" - | wl-copy'
 
 # Window management
-riverctl map normal $mod		Q       close
-riverctl map normal $mod+Shift  E       spawn 'wlogout -p layer-shell'
+riverctl map normal $mod        Q       close
+riverctl map normal $mod        Escape  spawn "fuzzel-session.sh"
 
 riverctl map normal $mod        F       toggle-fullscreen
 riverctl map normal $mod        S       toggle-float
