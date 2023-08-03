@@ -5,9 +5,9 @@
 # Variables
 #
 mod="Mod4"
-background_color=0x2b2e33
-default_focused_border_color=0x65a4cf
-default_unfocused_border_color=0x57686c
+wallpaper="$HOME/pics/wpaper/86910-anime-lighthouse-floating_island.jpg -m fill"
+default_focused_border_color=0x2fafff
+default_unfocused_border_color=0x303030
 
 ############
 # Appearance
@@ -182,7 +182,7 @@ riverctl rule-add csd -app-id "org.gnome.Nautilus"
 ###########
 # Autostart
 #
-riverctl spawn 'swaybg -i $HOME/pics/wpaper/86910-anime-lighthouse-floating_island.jpg -m fill'
+riverctl spawn 'swaybg -i $wallpaper'
 riverctl spawn "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river"
 riverctl spawn "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
 #riverctl spawn "river-tag-overlay \
