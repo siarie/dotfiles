@@ -128,7 +128,6 @@ riverctl set-cursor-warp on-output-change
 #######
 # Input
 #
-riverctl input "pointer-2-7-SynPS/2_Synaptics_TouchPad" tap enabled
 riverctl set-repeat 80 300
 
 ########
@@ -160,7 +159,6 @@ riverctl map normal $mod+Alt+Control L snap right
 #riverctl map normal $mod+Shift Right    send-layout-cmd rivertile "main-location right"
 #riverctl map normal $mod+Shift Down     send-layout-cmd rivertile "main-location bottom"
 #riverctl map normal $mod+Shift Left     send-layout-cmd rivertile "main-location left"
-
 
 ####################
 # Application Filter
@@ -197,7 +195,9 @@ riverctl spawn "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_
 riverctl spawn "lxpolkit"
 riverctl spawn kanshi
 
-# Set and exec into the default layout generator, rivertile.
-# River will send the process group of the init executable SIGTERM on exit.
+
+[ -e ~/.config/river/$(hostname).init ] && . ~/.config/river/$(hostname).init
+
 riverctl default-layout rivertile
 exec rivertile -view-padding 4 -outer-padding 4
+
