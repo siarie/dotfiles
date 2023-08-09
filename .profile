@@ -3,7 +3,7 @@ export EDITOR=kak
 export VISUAL=kak
 
 export GOPATH=$HOME/.local/share/go
-export PATH=$HOME/.local/bin:$GOPATH/bin:$PATH
+export PATH=$HOME/.local/bin:$GOPATH/bin:$HOME/.npm-global/bin:$PATH
 
 export GOPROXY=direct
 export GOSUMDB=off
