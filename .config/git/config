@@ -1,0 +1,7 @@
+[user]
+	email = mail@siarie.me
+	name = Sri Aspari
+[init]
+	defaultBranch = trunk
+[core]
+	editor = kak
