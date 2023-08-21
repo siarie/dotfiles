@@ -1,0 +1,10 @@
+hook global BufCreate .* %[
+	add-highlighter buffer/ number-lines -hlcursor
+	add-highlighter buffer/ wrap
+]
+
+add-highlighter global/ show-matching
+
+set-option global tabstop     4
+set-option global indentwidth 4
+
