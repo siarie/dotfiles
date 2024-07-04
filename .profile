@@ -3,6 +3,8 @@ export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
 export TERMINAL=foot
 export EDITOR=kak
 export VISUAL=kak
+export BEMENU_OPTS='--fn "Monoid 10" -l16 -c -M400 -B1 --fixed-height'
+
 
 export GOPATH=$HOME/.local/share/go
 export PATH=$HOME/.local/bin:$GOPATH/bin:$HOME/.npm-global/bin:$PATH

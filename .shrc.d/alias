@@ -2,8 +2,8 @@
 
 alias fuckoff="poweroff"
 alias kubectl="minikube kubectl --"
-alias em="emacsclient -t"
-alias ec="emacsclient -c"
+alias em="emacsclient -r -t"
+alias ec="emacsclient -r -c"
 
 # listdir
 alias la="ls -alh"

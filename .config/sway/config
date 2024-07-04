@@ -5,15 +5,14 @@ set $mod	Mod4
 set $mod1	Mod1
 
 # Home row direction keys, like vim
-set $left	h
-set $down	j
-set $up		k
-set $right	l
+set $left	j
+set $down	k
+set $up		l
+set $right	semicolon
 
 # Application
-set $terminal	alacritty
-set $floatterminal "alacritty --class floot"
-set $launcher	bemenu-run | xargs swaymsg exec --
+set $terminal	wayst
+set $launcher   j4-dmenu-desktop --no-generic --display-binary --dmenu="LD_LIBRARY_PATH=/usr/local/lib bemenu -p 'apps'"
 
 # Workspace name
 set $ws1	"1"
@@ -27,37 +26,44 @@ set $ws8	"8"
 set $ws9	"9"
 set $ws10	"10"
 
+# workspace display
+set $d1 "eDP-1"
+set $d2 "DP-4"
+
+workspace $ws1 output $d1
+workspace $ws2 output $d1
+workspace $ws3 output $d1
+workspace $ws4 output $d1
+workspace $ws5 output $d1
+workspace $ws6 output $d2
+workspace $ws7 output $d2
+workspace $ws8 output $d2
+workspace $ws9 output $d2
+workspace $ws10 output $d2
+
+
 ### Style Configuration
 #
 # Gaps
-gaps inner      8
+gaps inner      0
 smart_gaps      off
 
-client.focused		#8aadf4	#8aadf4 #181926	#7dc4e4
-client.focused_inactive	#7dc4e4 #7dc4e4 #181926
-client.unfocused	#494d64	#494d64	#7dc4e4
-client.urgent		#ed8796	#ed8796 #181926
-
 # Border
-default_border		pixel	3
+default_border		pixel	2
 default_floating_border	pixel	2
 
 # Typography
-title_align	left
-font		pango: Inconsolata 9
+font		pango: Monoid 8
 
-### Output configuration
-output * bg "~/.local/share/backgrounds/catpuccin/dark-cat-rosewater.png" stretch
-
-# setup built-in monitor always on the left
-#output eDP-1 pos 0 0
-#output HDMI-A-1 pos 1366 0
+# titlebar
+title_align	center
+titlebar_padding 4 1
 
 ### Idle configuration
 bindsym $mod+c exec swaylock -f -c 000000
 exec swayidle -w \
-         timeout 300 'swaylock -f -c 000000' \
-         timeout 600 'swaymsg "output * dpms off"' \
+         timeout 500 'swaylock -f -c 000000' \
+         timeout 1000 'swaymsg "output * dpms off"' \
          resume 'swaymsg "output * dpms on"' \
          before-sleep 'swaylock -f -c 000000'
 
@@ -84,13 +90,17 @@ input "1452:591:Custom_Keyboard" {
 bindsym $mod+Return exec $terminal
 
 # Start floating terminal
-bindsym $mod+Shift+Return exec $floatterminal
+#bindsym $mod+Shift+Return exec $floatterminal
 
 # Kill focused window
 bindsym $mod+Shift+q kill
 
 # Start your launcher
-bindsym $mod+d exec $launcher
+bindsym $mod+p exec $launcher
+bindsym $mod+d exec "LD_LIBRARY_PATH=/usr/local/lib bemenu-run"
+
+# network manager
+bindsym $mod+n exec nm_dmenu
 
 # Drag floating windows by holding down $mod and left mouse button.
 # Resize them with right mouse button + $mod.
@@ -103,7 +113,7 @@ floating_modifier $mod normal
 bindsym $mod+Shift+c reload
 
 # Exit sway (logs you out of your Wayland session)
-bindsym $mod+Shift+e exec swaynag -t warning -m 'Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+bindsym $mod+Escape exec swaynag -t warning -m 'Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
 
 #
 # Moving around:
@@ -118,6 +128,9 @@ bindsym $mod+Shift+e exec swaynag -t warning -m 'Do you really want to exit sway
     bindsym $mod+Down focus down
     bindsym $mod+Up focus up
     bindsym $mod+Right focus right
+
+    bindsym $mod+period focus output right
+    bindsym $mod+comma focus output left
 
     # Move the focused window with the same, but add Shift
     bindsym $mod+Shift+$left move left
@@ -280,25 +293,15 @@ for_window [app_id="thunderbird"] floating enable
 for_window [title="zoom"] floating enable
 for_window [title="Picture-in-Picture"] floating enable
 
-# Assign:
-assign [app_id="libreoffice-*"] $ws5
+for_window [title="Select Folder"] floating enable
 
 # Status Bar:
 bar {
-    status_command while ~/.config/sway/statusbar; do sleep 1; done
-    font pango: Inconsolata, lucide 10
-
+    status_command i3status
+    font pango:Inconsolata 8
     hidden_state hide
     mode hide
     modifier $mod+alt
-    
-    colors {
-    	background	#181926
-	statusline	#cad3f5
-
-	focused_workspace #7dc4e4 #b7bdf8 #181926
-	inactive_workspace #363a4f #181926 #939ab7
-	}
 }
 
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
@@ -306,8 +309,8 @@ exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DE
 # application startup
 exec dunst
 exec lxpolkit
-exec "/usr/lib/protonmail/bridge/proton-bridge-launcher --no-window"
-exec "tdesktop -startintray"
+#exec "/usr/lib/protonmail/bridge/proton-bridge-launcher --no-window"
+#exec "tdesktop -startintray"
 
 # gtk
 #set $gnome-scheme org.gnome.desktop.interface
