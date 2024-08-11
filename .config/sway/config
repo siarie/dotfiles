@@ -53,7 +53,7 @@ default_border		pixel	2
 default_floating_border	pixel	2
 
 # Typography
-font		pango: Monoid 8
+font		pango: Monoid 6
 
 # titlebar
 title_align	center
@@ -83,6 +83,9 @@ input "1:1:AT_Translated_Set_2_keyboard" {
 input "1452:591:Custom_Keyboard" {
    xkb_layout us
 }
+
+
+output * bg $HOME/pics/wpaper/wp8737360-mechanical-keyboard-wallpapers.png fill
 
 ### Key bindings
 #
@@ -298,10 +301,7 @@ for_window [title="Select Folder"] floating enable
 # Status Bar:
 bar {
     status_command i3status
-    font pango:Inconsolata 8
-    hidden_state hide
-    mode hide
-    modifier $mod+alt
+    font pango:Monoid 6
 }
 
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway

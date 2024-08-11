@@ -2,6 +2,6 @@
 Selection=True
 
 # source /etc/profile
-source ~/.profile
+[ -f ~/.profile ] && . ~/.profile
 
 exec dbus-launch $@
