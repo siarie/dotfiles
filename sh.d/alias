@@ -1,9 +1,8 @@
 #!/bin/sh
 
 alias fuckoff="poweroff"
-alias kubectl="minikube kubectl --"
-alias em="emacsclient -r -t"
-alias ec="emacsclient -r -c"
 
 # listdir
+alias ls="ls --color=auto"
 alias la="ls -alh"
+alias htop="htop -t"

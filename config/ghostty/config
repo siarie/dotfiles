@@ -1,0 +1,4 @@
+font-family = Spleen 6x12
+font-size = 11
+theme = Wombat
+gtk-titlebar = false
