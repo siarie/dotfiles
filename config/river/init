@@ -156,3 +156,4 @@ riverctl default-layout rivertile
 mako &
 rivertile -view-padding 4 -outer-padding 4 &
 poweralertd &
+river-tag-overlay --anchors 0:1:1:0 --margins 8:8:8:8 --square-size 24 --square-padding 8

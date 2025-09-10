@@ -1,5 +1,3 @@
-#!/bin/sh
-
 alias fuckoff="poweroff"
 
 # listdir
