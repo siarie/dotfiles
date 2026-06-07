@@ -4,3 +4,7 @@ alias fuckoff="poweroff"
 alias ls="ls --color=auto"
 alias la="ls -alh"
 alias htop="htop -t"
+
+function ccd () {
+    mkdir -p "$1" && cd $_
+}
