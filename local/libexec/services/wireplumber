@@ -1,0 +1,4 @@
+#!/bin/sh
+
+until [ -S "$XDG_RUNTIME_DIR/pipewire-0" ]; do sleep 0.1; done
+exec wireplumber

@@ -1,0 +1,4 @@
+type = process
+command = $HOME/.local/libexec/services/dbus
+restart = true
+log-type = buffer

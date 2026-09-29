@@ -1,0 +1,4 @@
+type = process
+command = /usr/bin/poweralertd
+depends-on = dbus
+restart = true
