@@ -2,20 +2,20 @@
 sort=-time
 layer=overlay
 max-visible=5
+default-timeout=5000
 
 format=<b>%s</b>\n%b
 
 # Style
-font=Monoid 9
-background-color=#282629
-text-color=#f8f8f2
+font=Iosevka 10
+background-color=#242424
+text-color=#f6f3e8
+border-color=#5b98c2
 border-size=2
-border-color=#00a6fb
-margin=8
-padding=4
-height=130
-
-default-timeout=5000
+margin=0,0,10
+outer-margin=32,14
+padding=10
+height=180
 
 [urgency=high]
-border-color=#ff5555
+border-color=#b85149
