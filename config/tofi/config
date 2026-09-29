@@ -1,6 +1,7 @@
 font = "Iosevka"
 font-size = 16
 
+background-color = #000C
 text-color = #f6f3e8
 
 # Selection text
@@ -19,7 +20,6 @@ result-spacing = 8
 
 width = 100%
 height = 100%
-background-color = #000A
 outline-width = 0
 border-width = 0
 padding-top = 25%
