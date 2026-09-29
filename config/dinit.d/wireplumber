@@ -1,5 +1,0 @@
-type = process
-command = $HOME/.local/libexec/services/wireplumber
-depends-on = pipewire
-depends-on = dbus
-restart = true
