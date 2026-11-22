@@ -1,0 +1,43 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 24,
+
+    "modules-left": ["custom/cow-desks"],
+    "modules-center": ["custom/cow-title"],
+    "modules-right": ["custom/cow-language", "cpu", "memory", "cpu#loadavg", "clock", "tray"],
+
+    "cpu": {
+        "format": "[CPU:{}]"
+    },
+    "memory": {
+        "format": "[MEM:{used}]"
+    },
+    "cpu#loadavg": {
+        "format": "[AVG:{load}]"
+    },
+    "custom/cow-desks": {
+        "exec": "cowbar -w desks -o $WAYBAR_OUTPUT_NAME",
+        "return-type": "json",
+        "format": "{}",
+        "tooltip": true
+    },
+    "custom/cow-title": {
+        "exec": "cowbar -w title -o $WAYBAR_OUTPUT_NAME",
+        "return-type": "json",
+        "format": "{}",
+        "tooltip": true,
+        "max-length": 80
+    },
+    "custom/cow-language": {
+        "exec": "cowbar -f language",
+        "return-type": "json",
+        "format": "[KBD:{}]",
+        "tooltip": false
+    },
+    "clock": {
+        "format": "[{:%b %d %H:%M:%S}]",
+        "tooltip-format": "{:%A, %B %d, %Y}",
+        "interval": 1
+    }
+}

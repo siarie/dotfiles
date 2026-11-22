@@ -2,3 +2,4 @@ type = process
 command = /usr/bin/pipewire
 depends-on = dbus
 restart = true
+log-type = buffer

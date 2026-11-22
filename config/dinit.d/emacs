@@ -1,0 +1,6 @@
+type = process
+command = $HOME/.local/bin/emacs --fg-daemon
+stop-command = /usr/bin/emacsclient --eval "(kill-emacs)"
+restart = true
+smooth-recovery = true
+logfile = $HOME/.local/var/log/emacs/emacs-daemon.log

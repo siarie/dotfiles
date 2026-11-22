@@ -1,0 +1,85 @@
+* {
+    font-family: "Iosevka";
+    font-size: 14px;
+    font-weight: bold;
+    color: #ffffff;
+    border: none;
+    border-radius: 0;
+    min-height: 0;
+    /* margin: 0; */
+}
+
+window#waybar {
+    background-color: #0000ff;
+    border: none;
+}
+
+/* Left */
+#custom-cow-desks {
+    padding: 0 4px;
+    color: #ffffff;
+}
+
+/* Centre — green over/underline, purple bg, white fg */
+#custom-cow-title {
+    /* background-color: #AC59FF; */
+    color: #ffffff;
+    /* padding: 0 8px; */
+    min-width: 200px;
+    /* border-top: 1px solid #00ff00; */
+    /* border-bottom: 1px solid #00ff00; */
+}
+
+/* Right modules — colours from ~/.conkyrc, cyan over/underline, white fg.
+ * No left/right padding or margin so modules sit flush against each other. */
+#cpu,
+#memory,
+#custom-cpu,
+#custom-mem,
+#custom-loadavg,
+#cpu.loadavg,
+#clock {
+    color: #ffffff;
+    padding: 0;
+    margin: 0;
+    border-top: 1px solid #00ffff;
+    border-bottom: 1px solid #00ffff;
+}
+
+#cpu,
+#custom-cpu {
+    background-color: #4ECC4E;
+}
+
+#memory,
+#custom-mem {
+    background-color: #66B2FF;
+}
+
+#cpu.loadavg,
+#custom-loadavg {
+    background-color: #D68C5A;
+}
+
+#clock {
+    background-color: #BF4356;
+}
+
+#tray {
+    padding: 0 4px;
+}
+
+#custom-cow-mode {
+    padding: 0 8px;
+    color: #ffffff;
+}
+
+#custom-cow-mode.normal {
+    font-style: normal;
+}
+
+#custom-cow-mode.move,
+#custom-cow-mode.resize {
+    font-style: italic;
+    color: #ffcc00;
+}
